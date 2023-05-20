@@ -7,7 +7,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
-  const { user, loading,  signUpWithEmailPass, loginWithGoogle } = useContext(AuthContext);
+  const { user, loading, signUpWithEmailPass, loginWithGoogle } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
@@ -38,7 +39,7 @@ const Signup = () => {
       });
   };
 
-  if(user && !loading) navigate("/");
+  if (user && !loading) navigate("/");
   return (
     <div className="grid md:grid-cols-2">
       <img
@@ -50,8 +51,8 @@ const Signup = () => {
         <div className="text-center w-3/4 mx-auto space-y-2">
           <h3 className="font-francoisOne text-4xl">Welcome to Speedo!</h3>
           <p className="font-thin">
-            Please sign up to access your account and explore all
-            the exciting features we have to offer.
+            Please sign up to access your account and explore all the exciting
+            features we have to offer.
           </p>
         </div>
         <div className="md:w-3/4 md:mx-auto">
@@ -90,6 +91,18 @@ const Signup = () => {
                   placeholder="Your password"
                   className="input input-bordered"
                   name="password"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your photo url"
+                  className="input input-bordered"
+                  name="photourl"
                   required
                 />
               </div>
