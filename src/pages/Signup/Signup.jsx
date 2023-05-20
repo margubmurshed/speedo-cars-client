@@ -6,18 +6,18 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 
-const Login = () => {
-  const { user, loading, loginWithEmailPass, loginWithGoogle } = useContext(AuthContext);
+const Signup = () => {
+  const { user, loading,  signUpWithEmailPass, loginWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
 
-  const handleLogin = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    loginWithEmailPass(email, password)
+    signUpWithEmailPass(email, password)
       .then(() => {
         navigate(from);
         successToastify("Logged In Successfully");
@@ -38,6 +38,7 @@ const Login = () => {
       });
   };
 
+  if(user && !loading) navigate("/");
   return (
     <div className="grid md:grid-cols-2">
       <img
@@ -47,15 +48,27 @@ const Login = () => {
       />
       <div className="p-5 py-10">
         <div className="text-center w-3/4 mx-auto space-y-2">
-          <h3 className="font-francoisOne text-4xl">Hello Again!</h3>
+          <h3 className="font-francoisOne text-4xl">Welcome to Speedo!</h3>
           <p className="font-thin">
-            Welcome back! Please log in to access your account and explore all
+            Please sign up to access your account and explore all
             the exciting features we have to offer.
           </p>
         </div>
         <div className="md:w-3/4 md:mx-auto">
-          <form onSubmit={handleLogin} className="font-francoisOne">
+          <form onSubmit={handleSignUp} className="font-francoisOne">
             <div className="mb-5">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  className="input input-bordered"
+                  name="name"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -79,18 +92,13 @@ const Login = () => {
                   name="password"
                   required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
               </div>
               <div className="form-control mt-6">
                 <button
                   type="submit"
                   className="btn bg-speedo-primary border-speedo-primary hover:bg-red-500 hover:border-red-500 font-francoisOne font-light"
                 >
-                  Login
+                  Sign Up
                 </button>
               </div>
             </div>
@@ -103,12 +111,12 @@ const Login = () => {
             <span className="font-francoisOne">Sign In with Google</span>
           </button>
           <p className="mt-5 text-center font-thin">
-            Don't have an account yet?{" "}
+            Already have an account?
             <Link
-              to="/signup"
+              to="/login"
               className="text-speedo-primary font-francoisOne font-thin"
             >
-              Sign Up
+              Login
             </Link>
           </p>
         </div>
@@ -117,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

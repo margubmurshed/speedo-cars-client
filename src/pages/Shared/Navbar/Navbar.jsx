@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LogoIcon from "../../../assets/icons/speedo_car_logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
+import { AuthContext } from "../../../providers/AuthProvider";
+import successToastify from "../../../toastifies/success/success";
+import failedToastify from "../../../toastifies/failedToastify/failed";
 
 const Navbar = () => {
-  const [user, setUser] = useState(true);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        successToastify("User Logged Out Successfully");
+      })
+      .catch((err) => {
+        failedToastify(err.message);
+      });
+  };
   const navlinks = [
     { id: 1, path: "/", text: "Home" },
     { id: 2, path: "/all-toys", text: "All Toys" },
@@ -66,12 +78,19 @@ const Navbar = () => {
               className="menu menu-compact gap-3 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {listItems}
-              {user && privateListItems}
-              <li>
-                <button className="btn bg-blue-500 font-francoisOne text-white border-blue-500">
-                  Logout
-                </button>
-              </li>
+              {user && (
+                <>
+                  {privateListItems}
+                  <li>
+                    <button
+                      className="btn bg-blue-500 font-francoisOne text-white border-blue-500"
+                      onClick={handleLogOut}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl gap-3">
@@ -84,12 +103,19 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-3">
             {listItems}
-            {user && privateListItems}
-            <li>
-              <button className="btn bg-blue-500 font-francoisOne text-white border-blue-500">
-                Logout
-              </button>
-            </li>
+            {user && (
+              <>
+                {privateListItems}
+                <li>
+                  <button
+                    className="btn bg-blue-500 font-francoisOne text-white border-blue-500"
+                    onClick={handleLogOut}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="navbar-end relative">
@@ -98,13 +124,16 @@ const Navbar = () => {
               <div className="avatar">
                 <div className="w-12 rounded-full">
                   <img
-                    title="Manoj Singh"
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    title={user.displayName}
+                    src={
+                      user.photoURL ||
+                      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    }
                   />
                 </div>
               </div>
               <div className="absolute top-full right-0 p-5 py-3 border rounded-md shadow hidden avatar-container-hover">
-                <p>Manoj Singh</p>
+                <p>{user.displayName}</p>
               </div>
             </div>
           ) : (
