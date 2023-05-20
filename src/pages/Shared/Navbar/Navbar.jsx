@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../../assets/icons/speedo_car_logo.png";
+import LogoIcon from "../../../assets/icons/speedo_car_logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
 
@@ -41,8 +41,8 @@ const Navbar = () => {
   ));
 
   return (
-    <div className="container mx-auto p-3">
-      <div className="navbar bg-base-100">
+    <div className="sticky top-0 left-0 right-0 p-3 bg-white shadow">
+      <div className="navbar bg-base-100 container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -74,12 +74,12 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl gap-3">
-            <img src={logo} alt="logo" className="w-12" />
+          <Link to="/" className="btn btn-ghost text-xl gap-3">
+            <img src={LogoIcon} alt="logoicon" className="w-12" />
             <span className="font-francoisOne">
               Sp<span className="text-speedo-primary">ee</span>do
             </span>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-3">
