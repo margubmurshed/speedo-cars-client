@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBjw4ajlGuGQ5Wq8j-Lj4KBoVRAN1Yjqhg",
-  authDomain: "speedo-cars.firebaseapp.com",
-  projectId: "speedo-cars",
-  storageBucket: "speedo-cars.appspot.com",
-  messagingSenderId: "817778237223",
-  appId: "1:817778237223:web:6a7ebd5859c1f3d1c59302"
+  apiKey: process.env.VITE_apiKey,
+  authDomain: process.env.VITE_authDomain,
+  projectId: process.env.VITE_projectId,
+  storageBucket: process.env.VITE_storageBucket,
+  messagingSenderId: process.env.VITE_messagingSenderId,
+  appId: process.env.VITE_appId,
 };
 
 // Initialize Firebase
