@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BallTriangle } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AllToys = () => {
   const [products, setProducts] = useState([]);
@@ -47,9 +48,15 @@ const AllToys = () => {
 
   return (
     <div className="space-y-5 py-5">
+      <Helmet>
+        <title>Speedo Cars | All Toys</title>
+      </Helmet>
       <div className="text-center font-francoisOne space-y-5">
         <h2 className="text-4xl">All Toys</h2>
-        <form className="flex flex-wrap gap-3 justify-center" onSubmit={handleSearch}>
+        <form
+          className="flex flex-wrap gap-3 justify-center"
+          onSubmit={handleSearch}
+        >
           <input
             type="text"
             placeholder="Seach by product name"
@@ -80,61 +87,63 @@ const AllToys = () => {
           <>
             {products.length ? (
               <div className="overflow-x-auto">
-              <table className="table table-zebra w-full z-0">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th >Seller</th>
-                    <th >Toy Name</th>
-                    <th>Sub Category</th>
-                    <th>Price</th>
-                    <th>Available Quantity</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(
-                    (
-                      {
-                        _id,
-                        sellerName,
-                        toyName,
-                        subCategory,
-                        price,
-                        availableQuantity,
-                      },
-                      index
-                    ) => (
-                      <tr key={_id}>
-                        <td>{index + 1}</td>
-                        <td>{sellerName}</td>
-                        <td>{toyName}</td>
-                        <td>{subCategory}</td>
-                        <td>{price}</td>
-                        <td>
-                          {parseInt(availableQuantity) || (
-                            <span className="text-speedo-primary text-bold">
-                              Out of Stock
-                            </span>
-                          )}
-                        </td>
-                        <td>
-                          <Link
-                            to={`/toy/${_id}`}
-                            className="btn bg-speedo-primary border-speedo-primary"
-                          >
-                            View Details
-                          </Link>
-                        </td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
+                <table className="table table-zebra w-full z-0">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Seller</th>
+                      <th>Toy Name</th>
+                      <th>Sub Category</th>
+                      <th>Price</th>
+                      <th>Available Quantity</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map(
+                      (
+                        {
+                          _id,
+                          sellerName,
+                          toyName,
+                          subCategory,
+                          price,
+                          availableQuantity,
+                        },
+                        index
+                      ) => (
+                        <tr key={_id}>
+                          <td>{index + 1}</td>
+                          <td>{sellerName}</td>
+                          <td>{toyName}</td>
+                          <td>{subCategory}</td>
+                          <td>{price}</td>
+                          <td>
+                            {parseInt(availableQuantity) || (
+                              <span className="text-speedo-primary text-bold">
+                                Out of Stock
+                              </span>
+                            )}
+                          </td>
+                          <td>
+                            <Link
+                              to={`/toy/${_id}`}
+                              className="btn bg-speedo-primary border-speedo-primary"
+                            >
+                              View Details
+                            </Link>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             ) : (
-              <p className="text-center font-francoisOne py-10">No Products Found</p>
+              <p className="text-center font-francoisOne py-10">
+                No Products Found
+              </p>
             )}
           </>
         )}

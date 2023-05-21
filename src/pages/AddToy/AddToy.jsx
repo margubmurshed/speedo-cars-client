@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import successToastify from "../../toastifies/success/success";
 import failedToastify from "../../toastifies/failedToastify/failed";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from 'react-helmet';
 
 const AddToy = () => {
     const {user} = useContext(AuthContext);
@@ -31,6 +32,9 @@ const AddToy = () => {
     }
   return (
     <div className="space-y-5 py-5">
+      <Helmet>
+        <title>Speedo Cars | Add Toy</title>
+      </Helmet>
       <div className="text-center font-francoisOne space-y-5">
         <h2 className="text-4xl">Add Toy</h2>
         <form onSubmit={handleAddToy}>

@@ -5,6 +5,7 @@ import failedToastify from "../../toastifies/failedToastify/failed";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Signup = () => {
   const { user, loading, signUpWithEmailPass, loginWithGoogle } =
@@ -40,6 +41,9 @@ const Signup = () => {
   };
   return (
     <div className="grid md:grid-cols-2">
+      <Helmet>
+        <title>Speedo Cars | Signup</title>
+      </Helmet>
       <img
         src={photo}
         alt="login_reg_photo"

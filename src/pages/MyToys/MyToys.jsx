@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import failedToastify from "../../toastifies/failedToastify/failed";
 import UpdateModal from "./UpdateModal/UpdateModal";
+import { Helmet } from "react-helmet";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const MyToys = () => {
         setProducts(res);
         setLoading(false);
       });
-  }
+  };
 
   useEffect(() => {
     fetchMyProducts();
@@ -54,15 +55,15 @@ const MyToys = () => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
             }
           })
-          .catch(err => failedToastify(err.message))
+          .catch((err) => failedToastify(err.message));
       }
     });
   };
 
-  const handleEditBtnClick = id => {
+  const handleEditBtnClick = (id) => {
     setSelProdIDForUpdate(id);
     setIsOpenModal(true);
-  }
+  };
 
   if (loading)
     return (
@@ -82,6 +83,9 @@ const MyToys = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Speedo Cars | My Toys</title>
+      </Helmet>
       <div className="space-y-5 py-5">
         <div className="text-center font-francoisOne space-y-5">
           <h2 className="text-4xl">My Toys</h2>
@@ -129,10 +133,16 @@ const MyToys = () => {
                           )}
                         </td>
                         <td className="flex gap-3">
-                          <button className="w-10 h-10 rounded-full bg-speedo-primary text-white flex justify-center items-center" onClick={() => handleEditBtnClick(_id)}>
+                          <button
+                            className="w-10 h-10 rounded-full bg-speedo-primary text-white flex justify-center items-center"
+                            onClick={() => handleEditBtnClick(_id)}
+                          >
                             <RiPencilFill size={20} />
                           </button>
-                          <button className="w-10 h-10 rounded-full bg-speedo-primary text-white flex justify-center items-center" onClick={() => handleDeleteProduct(_id)}>
+                          <button
+                            className="w-10 h-10 rounded-full bg-speedo-primary text-white flex justify-center items-center"
+                            onClick={() => handleDeleteProduct(_id)}
+                          >
                             <FaTrashAlt size={20} />
                           </button>
                         </td>
@@ -149,7 +159,12 @@ const MyToys = () => {
           )}
         </div>
       </div>
-      <UpdateModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} selProdIDForUpdate={selProdIDForUpdate} fetchMyProducts={fetchMyProducts}/>
+      <UpdateModal
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+        selProdIDForUpdate={selProdIDForUpdate}
+        fetchMyProducts={fetchMyProducts}
+      />
     </>
   );
 };

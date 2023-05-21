@@ -11,16 +11,18 @@ import AllToys from '../pages/AllToys/AllToys'
 import AddToy from '../pages/AddToy/AddToy'
 import MyToys from '../pages/MyToys/MyToys'
 import NotFound from '../pages/NoutFound/NotFound'
+import Blogs from '../pages/Blogs/Blogs'
 
 export const router = createBrowserRouter([
     {path: '/', element: <PrimaryLayout />, children: [
         {index: true, element: <Home />},
+        {path: '/blogs', element: <Blogs />},
         {path: '/all-toys', element: <AllToys />},
         {path: '/toy/:id', element: <PrivateRoute><ToyDetails /></PrivateRoute>},
         {path: '/add-toy', element: <PrivateRoute><AddToy /></PrivateRoute>},
         {path: '/my-toys', element: <PrivateRoute><MyToys /></PrivateRoute>},
     ]},
-    {path:'login', element: <AuthRoute><AuthLayout><Login /></AuthLayout></AuthRoute>},
-    {path:'signup', element: <AuthRoute><AuthLayout><Signup /></AuthLayout></AuthRoute>},
+    {path:'/login', element: <AuthRoute><AuthLayout><Login /></AuthLayout></AuthRoute>},
+    {path:'/signup', element: <AuthRoute><AuthLayout><Signup /></AuthLayout></AuthRoute>},
     {path:'*', element: <NotFound />},
 ])

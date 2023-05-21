@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BallTriangle } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import ReactStarsRating from "react-awesome-stars-rating";
+import { Helmet } from "react-helmet";
 
 const ToyDetails = () => {
   const { id } = useParams();
@@ -42,6 +43,9 @@ const ToyDetails = () => {
 
   return (
     <div className="grid md:grid-cols-2 gap-5">
+      <Helmet>
+        <title>Speedo Cars | Toy Details</title>
+      </Helmet>
       <img src={selectedProduct.photoURL} alt={selectedProduct.toyName} className="order-2 w-full"/>
       <div className="font-francoisOne font-thin space-y-5 order-1">
         <h2 className="text-3xl">{selectedProduct.toyName}</h2>
