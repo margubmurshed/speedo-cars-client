@@ -9,9 +9,10 @@ const ToyDetails = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://speedo-cars-server.vercel.app/products/${id}`)
       .then((res) => res.json())
       .then((product) => {
+        console.log(product)
         setSelectedProduct(product);
         setLoading(false);
       })

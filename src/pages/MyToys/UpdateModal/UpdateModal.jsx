@@ -8,7 +8,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/products/${selProdIDForUpdate}`)
+    fetch(`https://speedo-cars-server.vercel.app/products/${selProdIDForUpdate}`)
       .then((res) => res.json())
       .then((res) => {
         setSelectedProduct(res);
@@ -28,7 +28,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
       toyDetails
     };
 
-    fetch(`http://localhost:5000/products/${selProdIDForUpdate}`, {
+    fetch(`https://speedo-cars-server.vercel.app/products/${selProdIDForUpdate}`, {
       method: "PATCH",
       body: JSON.stringify(toyInfo),
       headers: {

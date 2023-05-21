@@ -9,7 +9,7 @@ const AllToys = () => {
   const [searchLoading, setSearchLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products?limit=20")
+    fetch("https://speedo-cars-server.vercel.app/products?limit=20")
       .then((res) => res.json())
       .then((res) => {
         setProducts(res);
@@ -22,7 +22,7 @@ const AllToys = () => {
     setSearchLoading(true);
     const searchValue = event.target.searchField.value;
     console.log(searchValue);
-    fetch(`http://localhost:5000/search?q=${searchValue}`)
+    fetch(`https://speedo-cars-server.vercel.app/search?q=${searchValue}`)
       .then((res) => res.json())
       .then((products) => {
         setProducts(products);
