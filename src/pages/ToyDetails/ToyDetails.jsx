@@ -42,7 +42,7 @@ const ToyDetails = () => {
 
   return (
     <div className="grid md:grid-cols-2 gap-5">
-      <img src={selectedProduct.photoURL} alt={selectedProduct.toyName} className="order-2"/>
+      <img src={selectedProduct.photoURL} alt={selectedProduct.toyName} className="order-2 w-full"/>
       <div className="font-francoisOne font-thin space-y-5 order-1">
         <h2 className="text-3xl">{selectedProduct.toyName}</h2>
         <p className="text-3xl">${selectedProduct.price}</p>

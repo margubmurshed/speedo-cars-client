@@ -10,6 +10,7 @@ import AuthRoute from './AuthRoute'
 import AllToys from '../pages/AllToys/AllToys'
 import AddToy from '../pages/AddToy/AddToy'
 import MyToys from '../pages/MyToys/MyToys'
+import NotFound from '../pages/NoutFound/NotFound'
 
 export const router = createBrowserRouter([
     {path: '/', element: <PrimaryLayout />, children: [
@@ -21,4 +22,5 @@ export const router = createBrowserRouter([
     ]},
     {path:'login', element: <AuthRoute><AuthLayout><Login /></AuthLayout></AuthRoute>},
     {path:'signup', element: <AuthRoute><AuthLayout><Signup /></AuthLayout></AuthRoute>},
+    {path:'*', element: <NotFound />},
 ])
