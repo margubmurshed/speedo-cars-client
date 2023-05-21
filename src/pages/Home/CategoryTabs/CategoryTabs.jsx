@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BallTriangle } from "react-loader-spinner";
+import ReactStarsRating from "react-awesome-stars-rating";
+import { Link } from "react-router-dom";
 
 const CategoryTabs = () => {
   const [subCategories, setSubCategories] = useState([]);
@@ -101,10 +103,21 @@ const CategoryTabs = () => {
                     <div className="text-center space-y-2 mt-5">
                       <h3 className="font-francoisOne text-xl">{toyName}</h3>
                       <p className="text-speedo-primary font-bold">${price}</p>
-                      <p>{ratings}</p>
-                      <button className="btn w-full bg-speedo-primary border-speedo-primary">
-                        View Details
-                      </button>
+                      <div className="flex justify-center">
+                        <ReactStarsRating
+                          className="flex"
+                          value={ratings}
+                          size={20}
+                        />
+                      </div>
+                      <div className="pt-5">
+                        <Link
+                          to={`/toys/${_id}`}
+                          className="btn w-full bg-speedo-primary border-speedo-primary"
+                        >
+                          View Details
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )
