@@ -24,7 +24,7 @@ const Navbar = () => {
   ];
   const privateLinks = [
     { id: 3, path: "/my-toys", text: "My Toys" },
-    { id: 4, path: "/add-toys", text: "Add Toys" },
+    { id: 4, path: "/add-toy", text: "Add Toy" },
   ];
 
   const listItems = navlinks.map(({ id, path, text }) => (
