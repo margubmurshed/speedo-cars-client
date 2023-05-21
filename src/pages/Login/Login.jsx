@@ -7,7 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-  const { user, loading, loginWithEmailPass, loginWithGoogle } = useContext(AuthContext);
+  const { loginWithEmailPass, loginWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";

@@ -132,7 +132,7 @@ const Navbar = () => {
                   />
                 </div>
               </div>
-              <div className="absolute top-full right-0 p-5 py-3 border rounded-md shadow hidden avatar-container-hover">
+              <div className="absolute top-full right-0 p-5 py-3 border rounded-md shadow bg-white hidden avatar-container-hover">
                 <p>{user.displayName}</p>
               </div>
             </div>

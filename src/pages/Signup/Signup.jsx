@@ -38,8 +38,6 @@ const Signup = () => {
         failedToastify(err.message);
       });
   };
-
-  if (user && !loading) navigate("/");
   return (
     <div className="grid md:grid-cols-2">
       <img
