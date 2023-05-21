@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import successToastify from "../../toastifies/success/success";
 import failedToastify from "../../toastifies/failedToastify/failed";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const AddToy = () => {
+    const {user} = useContext(AuthContext);
     const handleAddToy = event => {
         event.preventDefault()
         const form = event.target;
@@ -15,7 +17,7 @@ const AddToy = () => {
         const ratings = form.rating.value;
         const availableQuantity = form.availablequantity.value;
         const toyDetails = form.details.value;
-        const toyInfo = {toyName, photoURL, sellerName, sellerEmail, subCategory, price, ratings, availableQuantity, toyDetails};
+        const toyInfo = {toyName, photoURL, sellerName, sellerEmail, userEmail:user.email, subCategory, price, ratings, availableQuantity, toyDetails};
 
         fetch("http://localhost:5000/products", {
             method: 'POST',
@@ -80,6 +82,7 @@ const AddToy = () => {
                     placeholder="Enter Seller Email"
                     className="input input-bordered"
                     name="selleremail"
+                    defaultValue={user?.email}
                     required
                   />
                 </div>

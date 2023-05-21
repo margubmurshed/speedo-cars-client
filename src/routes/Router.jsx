@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute'
 import AuthRoute from './AuthRoute'
 import AllToys from '../pages/AllToys/AllToys'
 import AddToy from '../pages/AddToy/AddToy'
+import MyToys from '../pages/MyToys/MyToys'
 
 export const router = createBrowserRouter([
     {path: '/', element: <PrimaryLayout />, children: [
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
         {path: '/all-toys', element: <AllToys />},
         {path: '/toy/:id', element: <PrivateRoute><ToyDetails /></PrivateRoute>},
         {path: '/add-toy', element: <PrivateRoute><AddToy /></PrivateRoute>},
+        {path: '/my-toys', element: <PrivateRoute><MyToys /></PrivateRoute>},
     ]},
     {path:'login', element: <AuthRoute><AuthLayout><Login /></AuthLayout></AuthRoute>},
     {path:'signup', element: <AuthRoute><AuthLayout><Signup /></AuthLayout></AuthRoute>},
