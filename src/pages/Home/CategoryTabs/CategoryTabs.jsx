@@ -112,7 +112,7 @@ const CategoryTabs = () => {
                       </div>
                       <div className="pt-5">
                         <Link
-                          to={`/toys/${_id}`}
+                          to={`/toy/${_id}`}
                           className="btn w-full bg-speedo-primary border-speedo-primary"
                         >
                           View Details
