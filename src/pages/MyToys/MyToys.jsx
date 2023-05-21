@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BallTriangle } from "react-loader-spinner";
 import { RiPencilFill } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
@@ -15,9 +15,9 @@ const MyToys = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selProdIDForUpdate, setSelProdIDForUpdate] = useState("");
 
-  const fetchMyProducts = () => {
+  const fetchMyProducts = (url) => {
     setLoading(true);
-    fetch("http://localhost:5000/myproducts", {
+    fetch(url, {
       method: "POST",
       body: JSON.stringify({ userEmail: user.email }),
       headers: {
@@ -32,7 +32,7 @@ const MyToys = () => {
   };
 
   useEffect(() => {
-    fetchMyProducts();
+    fetchMyProducts("http://localhost:5000/myproducts");
   }, []);
 
   const handleDeleteProduct = (id) => {
@@ -65,6 +65,14 @@ const MyToys = () => {
     setIsOpenModal(true);
   };
 
+  const handleSelectOrder = (value) => {
+    if(value === "ascending"){
+      fetchMyProducts("http://localhost:5000/myproducts?sort=1");
+    } else{
+      fetchMyProducts("http://localhost:5000/myproducts?sort=-1");
+    }
+  }
+
   if (loading)
     return (
       <div className="flex justify-center">
@@ -89,6 +97,11 @@ const MyToys = () => {
       <div className="space-y-5 py-5">
         <div className="text-center font-francoisOne space-y-5">
           <h2 className="text-4xl">My Toys</h2>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="font-francoisOne">Order : </span>
+          <button className="btn" onClick={() => handleSelectOrder('ascending')}>Price (Low to High)</button>
+          <button className="btn" onClick={() => handleSelectOrder('descending')}>Price (High to Low)</button>
         </div>
         <div>
           {products.length ? (
