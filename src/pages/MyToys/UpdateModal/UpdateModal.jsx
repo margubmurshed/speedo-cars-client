@@ -8,7 +8,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://speedo-cars-server.up.railway.app/products/${selProdIDForUpdate}`)
+    fetch(`http://localhost:5000/products/${selProdIDForUpdate}`)
       .then((res) => res.json())
       .then((res) => {
         setSelectedProduct(res);
@@ -28,7 +28,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
       toyDetails
     };
 
-    fetch(`https://speedo-cars-server.up.railway.app/products/${selProdIDForUpdate}`, {
+    fetch(`http://localhost:5000/products/${selProdIDForUpdate}`, {
       method: "PATCH",
       body: JSON.stringify(toyInfo),
       headers: {
@@ -41,7 +41,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
         if(res.modifiedCount){
             successToastify("Toy Updated Successfully!");
             setIsOpenModal(false)
-            fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts");
+            fetchMyProducts("http://localhost:5000/myproducts");
         }
       })
       .catch((err) => failedToastify(err.message));

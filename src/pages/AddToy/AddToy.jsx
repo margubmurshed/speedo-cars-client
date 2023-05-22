@@ -20,7 +20,7 @@ const AddToy = () => {
         const toyDetails = form.details.value;
         const toyInfo = {toyName, photoURL, sellerName, sellerEmail, userEmail:user.email, subCategory, price, ratings, availableQuantity, toyDetails};
 
-        fetch("https://speedo-cars-server.up.railway.app/products", {
+        fetch("http://localhost:5000/products", {
             method: 'POST',
             body: JSON.stringify(toyInfo),
             headers: {
@@ -35,12 +35,12 @@ const AddToy = () => {
       <Helmet>
         <title>Speedo Cars | Add Toy</title>
       </Helmet>
-      <div className="text-center font-francoisOne space-y-5">
+      <div className="text-center font-francoisOne space-y-5 p-5">
         <h2 className="text-4xl">Add Toy</h2>
         <form onSubmit={handleAddToy}>
           <div>
-            <div className="card flex-shrink-0 w-full bg-base-100">
-              <div className="card-body grid md:grid-cols-2">
+            <div className="w-full bg-base-100">
+              <div className="md:grid md:grid-cols-2 gap-3">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Toy Name</span>
