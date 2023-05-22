@@ -32,7 +32,7 @@ const MyToys = () => {
   };
 
   useEffect(() => {
-    fetchMyProducts("http://localhost:5000/myproducts");
+    fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts");
   }, []);
 
   const handleDeleteProduct = (id) => {
@@ -46,7 +46,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${id}`, { method: "DELETE" })
+        fetch(`https://speedo-cars-server.up.railway.app/products/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((res) => {
             if (res.deletedCount) {
@@ -67,9 +67,9 @@ const MyToys = () => {
 
   const handleSelectOrder = (value) => {
     if(value === "ascending"){
-      fetchMyProducts("http://localhost:5000/myproducts?sort=1");
+      fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts?sort=1");
     } else{
-      fetchMyProducts("http://localhost:5000/myproducts?sort=-1");
+      fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts?sort=-1");
     }
   }
 
