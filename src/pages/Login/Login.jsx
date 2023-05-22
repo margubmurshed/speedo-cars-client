@@ -8,7 +8,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
-  const { loginWithEmailPass, loginWithGoogle } = useContext(AuthContext);
+  const { loginWithEmailPass, loginWithGoogle, setLoading } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
@@ -20,12 +20,14 @@ const Login = () => {
     const password = form.password.value;
     loginWithEmailPass(email, password)
       .then(() => {
+        console.log("Login happed then")
         navigate(from);
         successToastify("Logged In Successfully");
       })
       .catch((err) => {
         failedToastify(err.message);
-      });
+        setLoading(false);
+      })
   };
 
   const handleLoginWithGoogle = () => {
@@ -36,6 +38,7 @@ const Login = () => {
       })
       .catch((err) => {
         failedToastify(err.message);
+        setLoading(false)
       });
   };
 

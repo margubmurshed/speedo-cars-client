@@ -11,7 +11,7 @@ const CategoryTabs = () => {
   const [selCatLoading, setSelCatLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://speedo-cars-server.vercel.app/subcategories")
+    fetch("https://speedo-cars-server.up.railway.app/subcategories")
       .then((res) => res.json())
       .then((res) => {
         setSubCategories(res);
@@ -23,8 +23,8 @@ const CategoryTabs = () => {
     setSelCatProdsLoading(true);
     const url =
       selectedCategory === "all items"
-        ? "https://speedo-cars-server.vercel.app/products"
-        : `https://speedo-cars-server.vercel.app/products?subCategory=${selectedCategory}`;
+        ? "https://speedo-cars-server.up.railway.app/products"
+        : `https://speedo-cars-server.up.railway.app/products?subCategory=${selectedCategory}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -54,7 +54,7 @@ const CategoryTabs = () => {
         ) : (
           <>
             <button
-              className={`font-francoisOne border rounded-full px-5 py-2 ${
+              className={`font-francoisOne border rounded-full px-5 py-2 text-xs md:text-base ${
                 "all items" === selectedCategory
                   ? "text-white bg-speedo-primary border-speedo-primary"
                   : "text-gray-500 border-gray-400 bg-transparent"
@@ -66,7 +66,7 @@ const CategoryTabs = () => {
             {subCategories.map((sc) => (
               <button
                 key={sc}
-                className={`font-francoisOne border rounded-full px-5 py-2 ${
+                className={`font-francoisOne border rounded-full px-5 py-2 text-xs md:text-base ${
                   sc.toLowerCase() === selectedCategory
                     ? "text-white bg-speedo-primary border-speedo-primary"
                     : "text-gray-500 border-gray-400 bg-transparent"
@@ -95,7 +95,7 @@ const CategoryTabs = () => {
               />
             </div>
           ) : (
-            <div className="grid md:grid-cols-4 gap-3 mt-5">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
               {selectedCategoryProducts.map(
                 ({ _id, toyName, photoURL, price, ratings }) => (
                   <div className="border p-5 rounded-md" key={_id}>

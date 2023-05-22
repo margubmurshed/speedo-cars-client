@@ -6,9 +6,10 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
-  const { user, loading, signUpWithEmailPass, loginWithGoogle } =
+  const { setLoading, signUpWithEmailPass, loginWithGoogle } =
     useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,13 +20,19 @@ const Signup = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    const name = form.name.value;
+    const photourl = form.photourl.value;
     signUpWithEmailPass(email, password)
-      .then(() => {
-        navigate(from);
-        successToastify("Logged In Successfully");
+      .then((res) => {
+        updateProfile(res.user, {displayName: name, photoURL:photourl})
+        .then(() => {
+          navigate(from);
+          successToastify("Signed Up Successfully");
+        })
       })
       .catch((err) => {
         failedToastify(err.message);
+        setLoading(false)
       });
   };
 
@@ -37,6 +44,7 @@ const Signup = () => {
       })
       .catch((err) => {
         failedToastify(err.message);
+        setLoading(false)
       });
   };
   return (

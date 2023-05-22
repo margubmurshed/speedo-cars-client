@@ -6,6 +6,8 @@ import { BallTriangle } from "react-loader-spinner";
 const AuthRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
 
+    console.log(user)
+
     if (loading)
     return (
       <div className="flex justify-center items-center h-screen">

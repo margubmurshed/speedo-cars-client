@@ -7,7 +7,7 @@ import successToastify from "../../../toastifies/success/success";
 import failedToastify from "../../../toastifies/failedToastify/failed";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, setLoading } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -15,6 +15,7 @@ const Navbar = () => {
       })
       .catch((err) => {
         failedToastify(err.message);
+        setLoading(false)
       });
   };
   const navlinks = [
@@ -57,7 +58,7 @@ const Navbar = () => {
       <div className="navbar bg-base-100 container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden p-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -133,7 +134,7 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="absolute top-full right-0 p-5 py-3 border rounded-md shadow bg-white hidden avatar-container-hover">
-                <p>{user.displayName}</p>
+                <p>{user.displayName || "User"}</p>
               </div>
             </div>
           ) : (

@@ -32,7 +32,7 @@ const MyToys = () => {
   };
 
   useEffect(() => {
-    fetchMyProducts("https://speedo-cars-server.vercel.app/myproducts");
+    fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts");
   }, []);
 
   const handleDeleteProduct = (id) => {
@@ -46,7 +46,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://speedo-cars-server.vercel.app/products/${id}`, { method: "DELETE" })
+        fetch(`https://speedo-cars-server.up.railway.app/products/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((res) => {
             if (res.deletedCount) {
@@ -67,9 +67,9 @@ const MyToys = () => {
 
   const handleSelectOrder = (value) => {
     if(value === "ascending"){
-      fetchMyProducts("https://speedo-cars-server.vercel.app/myproducts?sort=1");
+      fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts?sort=1");
     } else{
-      fetchMyProducts("https://speedo-cars-server.vercel.app/myproducts?sort=-1");
+      fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts?sort=-1");
     }
   }
 
@@ -100,8 +100,10 @@ const MyToys = () => {
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-francoisOne">Order : </span>
-          <button className="btn" onClick={() => handleSelectOrder('ascending')}>Price (Low to High)</button>
-          <button className="btn" onClick={() => handleSelectOrder('descending')}>Price (High to Low)</button>
+          <div className="flex flex-wrap gap-3">
+          <button className="btn text-xs md:text-base" onClick={() => handleSelectOrder('ascending')}>Price (Low to High)</button>
+          <button className="btn text-xs md:text-base" onClick={() => handleSelectOrder('descending')}>Price (High to Low)</button>
+          </div>
         </div>
         <div>
           {products.length ? (

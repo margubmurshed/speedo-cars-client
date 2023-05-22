@@ -9,7 +9,7 @@ const ToyDetails = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://speedo-cars-server.vercel.app/products/${id}`)
+    fetch(`https://speedo-cars-server.up.railway.app/products/${id}`)
       .then((res) => res.json())
       .then((product) => {
         console.log(product)
@@ -43,7 +43,7 @@ const ToyDetails = () => {
     );
 
   return (
-    <div className="grid md:grid-cols-2 gap-5">
+    <div className="grid md:grid-cols-2 gap-5 md:p-5">
       <Helmet>
         <title>Speedo Cars | Toy Details</title>
       </Helmet>

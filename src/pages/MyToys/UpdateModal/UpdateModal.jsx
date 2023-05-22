@@ -8,7 +8,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://speedo-cars-server.vercel.app/products/${selProdIDForUpdate}`)
+    fetch(`https://speedo-cars-server.up.railway.app/products/${selProdIDForUpdate}`)
       .then((res) => res.json())
       .then((res) => {
         setSelectedProduct(res);
@@ -28,7 +28,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
       toyDetails
     };
 
-    fetch(`https://speedo-cars-server.vercel.app/products/${selProdIDForUpdate}`, {
+    fetch(`https://speedo-cars-server.up.railway.app/products/${selProdIDForUpdate}`, {
       method: "PATCH",
       body: JSON.stringify(toyInfo),
       headers: {
@@ -41,7 +41,7 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
         if(res.modifiedCount){
             successToastify("Toy Updated Successfully!");
             setIsOpenModal(false)
-            fetchMyProducts();
+            fetchMyProducts("https://speedo-cars-server.up.railway.app/myproducts");
         }
       })
       .catch((err) => failedToastify(err.message));
@@ -78,8 +78,8 @@ const UpdateModal = ({ isOpenModal, setIsOpenModal, selProdIDForUpdate, fetchMyP
                 {selectedProduct ? (
                   <form onSubmit={handleUpdateToy}>
                     <div>
-                      <div className="card flex-shrink-0 w-full bg-base-100">
-                        <div className="card-body grid md:grid-cols-2">
+                      <div className="w-full bg-base-100">
+                        <div className="md:grid md:grid-cols-2 gap-3">
                           <div className="form-control">
                             <label className="label">
                               <span className="label-text">Toy Name</span>
