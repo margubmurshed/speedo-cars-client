@@ -3,20 +3,15 @@ import LogoIcon from "../../../assets/icons/speedo_car_logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
 import { AuthContext } from "../../../providers/AuthProvider";
-import successToastify from "../../../toastifies/success/success";
 import failedToastify from "../../../toastifies/failedToastify/failed";
 
 const Navbar = () => {
   const { user, logOut, setLoading } = useContext(AuthContext);
   const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        successToastify("User Logged Out Successfully");
-      })
-      .catch((err) => {
-        failedToastify(err.message);
-        setLoading(false)
-      });
+    logOut().catch((err) => {
+      failedToastify(err.message);
+      setLoading(false);
+    });
   };
   const navlinks = [
     { id: 1, path: "/", text: "Home" },
