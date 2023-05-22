@@ -11,7 +11,7 @@ const CategoryTabs = () => {
   const [selCatLoading, setSelCatLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://speedo-cars-server.up.railway.app/subcategories")
+    fetch("http://localhost:5000/subcategories")
       .then((res) => res.json())
       .then((res) => {
         setSubCategories(res);
@@ -23,8 +23,8 @@ const CategoryTabs = () => {
     setSelCatProdsLoading(true);
     const url =
       selectedCategory === "all items"
-        ? "https://speedo-cars-server.up.railway.app/products"
-        : `https://speedo-cars-server.up.railway.app/products?subCategory=${selectedCategory}`;
+        ? "http://localhost:5000/products"
+        : `http://localhost:5000/products?subCategory=${selectedCategory}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -95,7 +95,7 @@ const CategoryTabs = () => {
               />
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
+            <div className="grid xs sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-5">
               {selectedCategoryProducts.map(
                 ({ _id, toyName, photoURL, price, ratings }) => (
                   <div className="border p-5 rounded-md" key={_id}>
