@@ -20,7 +20,7 @@ const AddToy = () => {
         const toyDetails = form.details.value;
         const toyInfo = {toyName, photoURL, sellerName, sellerEmail, userEmail:user.email, subCategory, price, ratings, availableQuantity, toyDetails};
 
-        fetch("https://speedo-cars-server.up.railway.app/products", {
+        fetch("https://speedo-cars-server.onrender.com/products", {
             method: 'POST',
             body: JSON.stringify(toyInfo),
             headers: {

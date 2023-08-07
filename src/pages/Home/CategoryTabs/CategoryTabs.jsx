@@ -11,7 +11,7 @@ const CategoryTabs = () => {
   const [selCatLoading, setSelCatLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://speedo-cars-server.up.railway.app/subcategories")
+    fetch("https://speedo-cars-server.onrender.com/subcategories")
       .then((res) => res.json())
       .then((res) => {
         setSubCategories(res);
@@ -23,8 +23,8 @@ const CategoryTabs = () => {
     setSelCatProdsLoading(true);
     const url =
       selectedCategory === "all items"
-        ? "https://speedo-cars-server.up.railway.app/products"
-        : `https://speedo-cars-server.up.railway.app/products?subCategory=${selectedCategory}`;
+        ? "https://speedo-cars-server.onrender.com/products"
+        : `https://speedo-cars-server.onrender.com/products?subCategory=${selectedCategory}`;
 
     fetch(url)
       .then((res) => res.json())
