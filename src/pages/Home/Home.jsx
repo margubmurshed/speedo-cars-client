@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import ImageGallary from "./ImageGallary/ImageGallary";
 import Satisfaction from "./Satisfaction/Satisfaction";
 import CustomerService from "./CustomerService/CustomerService";
+import Discount from "./Discount/Discount";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <ImageGallary />
       <CategoryTabs />
       <Satisfaction />
+      <Discount />
       <CustomerService />
     </div>
   );
