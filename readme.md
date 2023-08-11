@@ -1,5 +1,8 @@
 # Project Title: Speedo Toy Cars
 
+# Overview
+Speedo Cars is an online toy marketplace that specifically sells toy cars. A user has to sign in to view toy details. He can see all toys without signing in. He can be a vendor by adding his first toy to the website. He can view and update all his added toys on the My Toys page. A user can sign in using either Google or email.
+
 ## Features:
 
 1. Shop by Category: You can see the catagories like tabs in home page and selecting one of them will load category wise products
